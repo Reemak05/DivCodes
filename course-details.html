@@ -1,0 +1,599 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Course Details | DivCodes Academy</title>
+
+    <meta name="description" content="Explore course details, learning outcomes, requirements and enrollment information at DivCodes Academy.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-cream py-3 sticky-top">
+
+        <div class="container">
+
+            <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+
+                <span class="brand-icon">
+                    <i class="bi bi-code-slash"></i>
+                </span>
+
+                <span class="brand-name">
+                    Div<span class="brand-dot">Codes</span>
+                </span>
+
+            </a>
+
+            <button class="navbar-toggler border-0 shadow-none"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#mainNavbar"
+                    aria-controls="mainNavbar"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+            <div class="collapse navbar-collapse" id="mainNavbar">
+
+                <ul class="navbar-nav mx-auto gap-lg-3">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="courses.html">Courses</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="my-courses.html">My Learning</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+
+                </ul>
+
+                <a href="register.html" class="btn btn-primary-custom mt-3 mt-lg-0">
+
+                    Get Started
+
+                    <i class="bi bi-arrow-up-right ms-1"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ================= BREADCRUMB ================= -->
+
+    <section class="details-breadcrumb">
+
+        <div class="container">
+
+            <nav aria-label="breadcrumb">
+
+                <ol class="breadcrumb mb-0">
+
+                    <li class="breadcrumb-item">
+                        <a href="index.html">Home</a>
+                    </li>
+
+                    <li class="breadcrumb-item">
+                        <a href="courses.html">Courses</a>
+                    </li>
+
+                    <li class="breadcrumb-item active" aria-current="page" id="breadcrumbCourse">
+                        Course Details
+                    </li>
+
+                </ol>
+
+            </nav>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= COURSE HERO ================= -->
+
+    <section class="details-hero">
+
+        <div class="container">
+
+            <div class="row align-items-center g-5">
+
+                <!-- Course Information -->
+
+                <div class="col-lg-7">
+
+                    <span class="details-category" id="courseCategory">
+
+                        Development
+
+                    </span>
+
+                    <h1 class="details-title mt-4" id="courseTitle">
+
+                        Loading course...
+
+                    </h1>
+
+                    <p class="details-description mt-4" id="courseDescription">
+
+                        Please wait while we load the course information.
+
+                    </p>
+
+
+                    <!-- Course Metadata -->
+
+                    <div class="details-meta mt-4">
+
+                        <div class="meta-item">
+
+                            <i class="bi bi-clock"></i>
+
+                            <div>
+
+                                <span>Duration</span>
+
+                                <strong id="courseDuration">--</strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="meta-item">
+
+                            <i class="bi bi-bar-chart"></i>
+
+                            <div>
+
+                                <span>Level</span>
+
+                                <strong id="courseLevel">--</strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="meta-item">
+
+                            <i class="bi bi-laptop"></i>
+
+                            <div>
+
+                                <span>Learning Mode</span>
+
+                                <strong>Practical</strong>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <a href="#enrollment" class="btn btn-primary-custom btn-lg mt-5">
+
+                        Enroll in This Course
+
+                        <i class="bi bi-arrow-up-right ms-2"></i>
+
+                    </a>
+
+                    <a href="courses.html" class="back-link ms-3">
+
+                        <i class="bi bi-arrow-left me-1"></i>
+
+                        All Courses
+
+                    </a>
+
+                </div>
+
+
+                <!-- Course Image -->
+
+                <div class="col-lg-5">
+
+                    <div class="details-image-wrapper">
+
+                        <img
+                            src=""
+                            alt=""
+                            id="courseImage"
+                            class="details-image"
+                        >
+
+                        <div class="image-caption">
+
+                            <i class="bi bi-mortarboard"></i>
+
+                            <span>Start building your future.</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= COURSE CONTENT ================= -->
+
+    <section class="details-content section-padding">
+
+        <div class="container">
+
+            <div class="row g-5">
+
+                <!-- Main Content -->
+
+                <div class="col-lg-8">
+
+                    <!-- What You Will Learn -->
+
+                    <div class="details-block">
+
+                        <span class="section-label">YOUR LEARNING JOURNEY</span>
+
+                        <h2 class="section-title mt-2">
+
+                            What you'll learn
+
+                        </h2>
+
+                        <p class="details-text mt-3">
+
+                            By the end of this course, you will have
+                            developed practical skills and a better
+                            understanding of the subject.
+
+                        </p>
+
+
+                        <div class="learning-outcomes mt-4" id="learningOutcomes">
+
+                            <!-- JavaScript inserts learning outcomes here -->
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Requirements -->
+
+                    <div class="details-block mt-5">
+
+                        <span class="section-label">BEFORE YOU BEGIN</span>
+
+                        <h2 class="section-title mt-2">
+
+                            Course requirements
+
+                        </h2>
+
+                        <div class="requirements-list mt-4" id="courseRequirements">
+
+                            <!-- JavaScript inserts requirements here -->
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Course Description -->
+
+                    <div class="details-block mt-5">
+
+                        <span class="section-label">ABOUT THIS COURSE</span>
+
+                        <h2 class="section-title mt-2">
+
+                            Your path to new skills.
+
+                        </h2>
+
+                        <p class="details-text mt-3" id="longDescription">
+
+                            <!-- JavaScript inserts detailed description here -->
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Sidebar -->
+
+                <div class="col-lg-4">
+
+                    <aside class="enrollment-card" id="enrollment">
+
+                        <div class="enrollment-top">
+
+                            <span class="section-label">START YOUR JOURNEY</span>
+
+                            <h3 class="mt-3">Ready to learn something new?</h3>
+
+                            <p>
+
+                                Take the next step and register for
+                                your selected course.
+
+                            </p>
+
+                        </div>
+
+
+                        <div class="enrollment-info">
+
+                            <div>
+
+                                <i class="bi bi-clock"></i>
+
+                                <span>Course duration</span>
+
+                                <strong id="sidebarDuration">--</strong>
+
+                            </div>
+
+                            <div>
+
+                                <i class="bi bi-bar-chart"></i>
+
+                                <span>Difficulty</span>
+
+                                <strong id="sidebarLevel">--</strong>
+
+                            </div>
+
+                            <div>
+
+                                <i class="bi bi-journal-check"></i>
+
+                                <span>Learning style</span>
+
+                                <strong>Project-based</strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <a href="register.html" id="enrollButton" class="btn btn-primary-custom w-100 mt-4">
+
+                            Enroll Now
+
+                            <i class="bi bi-arrow-up-right ms-2"></i>
+
+                        </a>
+
+
+                        <p class="enrollment-note mt-3">
+
+                            <i class="bi bi-shield-check me-1"></i>
+
+                            Your learning journey starts here.
+
+                        </p>
+
+                    </aside>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= BOTTOM CTA ================= -->
+
+    <section class="details-cta">
+
+        <div class="container text-center">
+
+            <h2>
+
+                Every expert was once a <span>beginner.</span>
+
+            </h2>
+
+            <p>
+
+                Explore more courses and find the skills
+                that inspire you.
+
+            </p>
+
+            <a href="courses.html" class="btn btn-light btn-lg">
+
+                Explore More Courses
+
+                <i class="bi bi-arrow-up-right ms-2"></i>
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer-section">
+
+        <div class="container">
+
+            <div class="row g-5 py-5">
+
+                <div class="col-lg-4">
+
+                    <a href="index.html" class="footer-brand">
+
+                        <i class="bi bi-code-slash"></i>
+
+                        Div<span>Codes</span>
+
+                    </a>
+
+                    <p class="footer-description mt-3">
+
+                        A place where curiosity meets technology.
+                        Learn programming, develop your skills,
+                        and build your future.
+
+                    </p>
+
+                    <div class="social-links mt-4">
+
+                        <a href="#" aria-label="Instagram">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+
+                        <a href="#" aria-label="LinkedIn">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+
+                        <a href="#" aria-label="GitHub">
+                            <i class="bi bi-github"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-6 col-lg-2">
+
+                    <h5>Explore</h5>
+
+                    <ul class="footer-links">
+
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="my-courses.html">My Learning</a></li>
+                        <li><a href="register.html">Contact</a></li>
+
+                    </ul>
+
+                </div>
+
+
+                <div class="col-6 col-lg-2">
+
+                    <h5>Learning</h5>
+
+                    <ul class="footer-links">
+
+                        <li><a href="courses.html">Development</a></li>
+                        <li><a href="courses.html">Programming</a></li>
+                        <li><a href="courses.html">Data Analytics</a></li>
+                        <li><a href="courses.html">Cybersecurity</a></li>
+
+                    </ul>
+
+                </div>
+
+
+                <div class="col-lg-4">
+
+                    <h5>Let's Connect</h5>
+
+                    <p class="footer-description">
+
+                        Have a question or want to start learning?
+                        We'd love to hear from you.
+
+                    </p>
+
+                    <a href="register.html" class="footer-contact-link">
+
+                        Get in touch
+
+                        <i class="bi bi-arrow-up-right"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between gap-2">
+
+                <p class="mb-0">
+
+                    © <span class="current-year"></span> DivCodes Academy.
+
+                    All rights reserved.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- Bootstrap JS -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Shared JS -->
+
+    <script src="js/main.js"></script>
+
+    <!-- Course Details JS -->
+
+    <script src="js/course-details.js"></script>
+
+</body>
+
+</html>

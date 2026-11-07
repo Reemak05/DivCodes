@@ -1,0 +1,813 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DivCodes Academy | Learn. Build. Grow.</title>
+
+    <meta name="description" content="Learn programming, web development, and technology with DivCodes Academy. Build real skills through practical courses.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-cream py-3 sticky-top">
+        <div class="container">
+
+            <!-- Brand -->
+            <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+
+                <span class="brand-icon">
+                    <i class="bi bi-code-slash"></i>
+                </span>
+
+                <span class="brand-name">
+                    Div<span class="brand-dot">Codes</span>
+                </span>
+
+            </a>
+
+            <!-- Mobile Toggle -->
+            <button class="navbar-toggler border-0 shadow-none"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#mainNavbar"
+                    aria-controls="mainNavbar"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+            <!-- Navigation Links -->
+            <div class="collapse navbar-collapse" id="mainNavbar">
+
+                <ul class="navbar-nav mx-auto gap-lg-3">
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="courses.html">Courses</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="my-courses.html">My Learning</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+
+                </ul>
+
+                <!-- Navbar Buttons -->
+                <div class="d-flex flex-column flex-lg-row gap-2 mt-3 mt-lg-0">
+
+                    <a href="courses.html" class="btn btn-primary-custom">
+                        Get Started
+                        <i class="bi bi-arrow-up-right ms-1"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+    </nav>
+
+
+    <!-- ================= HERO SECTION ================= -->
+
+    <header class="hero-section">
+
+        <div class="container">
+
+            <div class="row align-items-center min-vh-75 g-5">
+
+                <!-- Hero Text -->
+                <div class="col-lg-6">
+
+                    <div class="hero-label mb-4">
+
+                        <span class="label-dot"></span>
+
+                        YOUR JOURNEY INTO TECHNOLOGY STARTS HERE
+
+                    </div>
+
+                    <h1 class="hero-title">
+
+                        Don't just learn.
+                        <span class="highlight-text">Build</span>
+                        something
+                        <span class="highlight-text">great.</span>
+
+                    </h1>
+
+                    <p class="hero-description mt-4">
+
+                        Discover the world of programming through practical
+                        courses, real projects, and skills that prepare you
+                        for the future of technology.
+
+                    </p>
+
+                    <!-- Hero Buttons -->
+                    <div class="d-flex flex-wrap gap-3 mt-4">
+
+                        <a href="courses.html" class="btn btn-primary-custom btn-lg">
+
+                            Explore Courses
+
+                            <i class="bi bi-arrow-up-right ms-2"></i>
+
+                        </a>
+
+                        <a href="#about" class="btn btn-outline-dark-custom btn-lg">
+
+                            Discover DivCodes
+
+                        </a>
+
+                    </div>
+
+                    <!-- Student Information -->
+                    <div class="hero-social-proof mt-5">
+
+                        <div class="avatar-stack">
+
+                            <span class="avatar avatar-one">S</span>
+                            <span class="avatar avatar-two">M</span>
+                            <span class="avatar avatar-three">A</span>
+                            <span class="avatar avatar-four">
+                                <i class="bi bi-plus"></i>
+                            </span>
+
+                        </div>
+
+                        <div>
+
+                            <div class="rating-stars">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                            </div>
+
+                            <p class="mb-0 small">
+                                Learn together. Grow together.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Hero Image -->
+                <div class="col-lg-6">
+
+                    <div class="hero-visual">
+
+                        <img
+                            src="img/hero.avif"
+                            alt="Developer working on a computer"
+                            class="hero-image"
+                        >
+
+                        <!-- Floating Code Card -->
+                        <div class="floating-card code-card">
+
+                            <div class="code-card-header">
+
+                                <span class="code-dot red"></span>
+                                <span class="code-dot yellow"></span>
+                                <span class="code-dot green"></span>
+
+                                <span class="ms-2 small">hello-world.js</span>
+
+                            </div>
+
+                            <div class="code-content">
+
+                                <p><span class="code-purple">const</span> future = <span class="code-green">"Developer"</span>;</p>
+
+                                <p><span class="code-purple">function</span> <span class="code-yellow">buildSkills</span>() {</p>
+
+                                <p class="ps-3">return <span class="code-green">"Your future starts here"</span>;</p>
+
+                                <p>}</p>
+
+                                <p class="mb-0"><span class="code-comment">// Let's create something amazing.</span></p>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Floating Badge -->
+                        <div class="floating-card learning-card">
+
+                            <div class="learning-icon">
+                                <i class="bi bi-lightbulb"></i>
+                            </div>
+
+                            <div>
+                                <strong>Learn by doing</strong>
+                                <p class="mb-0 small text-muted">Real-world projects</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= STATS SECTION ================= -->
+
+    <section class="stats-section">
+
+        <div class="container">
+
+            <div class="row text-center g-4">
+
+                <div class="col-6 col-lg-3">
+
+                    <h2 class="stat-number">06+</h2>
+                    <p class="stat-label">Practical Courses</p>
+
+                </div>
+
+                <div class="col-6 col-lg-3">
+
+                    <h2 class="stat-number">100%</h2>
+                    <p class="stat-label">Learning Focused</p>
+
+                </div>
+
+                <div class="col-6 col-lg-3">
+
+                    <h2 class="stat-number">03</h2>
+                    <p class="stat-label">Learning Levels</p>
+
+                </div>
+
+                <div class="col-6 col-lg-3">
+
+                    <h2 class="stat-number">∞</h2>
+                    <p class="stat-label">Possibilities</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FEATURED COURSES ================= -->
+
+    <section class="courses-section section-padding">
+
+        <div class="container">
+
+            <div class="section-heading d-flex flex-column flex-md-row justify-content-between align-items-md-end mb-5">
+
+                <div>
+
+                    <span class="section-label">WHAT YOU CAN LEARN</span>
+
+                    <h2 class="section-title mt-3">
+
+                        Skills that move<br>
+                        <span class="serif-text">you forward.</span>
+
+                    </h2>
+
+                    <p class="section-description mt-3">
+
+                        Choose your path and start building skills
+                        that matter in the real world.
+
+                    </p>
+
+                </div>
+
+                <a href="courses.html" class="text-link mt-3 mt-md-0">
+
+                    Explore all courses
+
+                    <i class="bi bi-arrow-up-right"></i>
+
+                </a>
+
+            </div>
+
+
+            <div class="row g-4">
+
+                <!-- Course 1 -->
+                <div class="col-md-6 col-lg-4">
+
+                    <article class="course-card h-100">
+
+                        <div class="course-image-wrapper">
+
+                            <img
+                                src="img/web-development.jpg"
+                                alt="Web development workspace"
+                                class="course-image"
+                                loading="lazy"
+                            >
+
+                            <span class="course-category">Development</span>
+
+                        </div>
+
+                        <div class="course-body">
+
+                            <div class="course-meta">
+
+                                <span>
+                                    <i class="bi bi-clock"></i>
+                                    8 Weeks
+                                </span>
+
+                                <span>
+                                    <i class="bi bi-bar-chart"></i>
+                                    Beginner
+                                </span>
+
+                            </div>
+
+                            <h3>Web Development</h3>
+
+                            <p>
+
+                                Learn HTML, CSS, JavaScript, and Bootstrap
+                                to create modern and responsive websites.
+
+                            </p>
+
+                            <a href="course-details.html?id=web-development" class="course-link">
+
+                                View Course
+
+                                <i class="bi bi-arrow-right"></i>
+
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+
+                <!-- Course 2 -->
+                <div class="col-md-6 col-lg-4">
+
+                    <article class="course-card h-100">
+
+                        <div class="course-image-wrapper">
+
+                            <img
+                                src="img/python.avif"
+                                alt="Python programming code"
+                                class="course-image"
+                                loading="lazy"
+                            >
+
+                            <span class="course-category">Programming</span>
+
+                        </div>
+
+                        <div class="course-body">
+
+                            <div class="course-meta">
+
+                                <span>
+                                    <i class="bi bi-clock"></i>
+                                    6 Weeks
+                                </span>
+
+                                <span>
+                                    <i class="bi bi-bar-chart"></i>
+                                    Beginner
+                                </span>
+
+                            </div>
+
+                            <h3>Python Programming</h3>
+
+                            <p>
+
+                                Understand programming fundamentals and
+                                develop practical applications using Python.
+
+                            </p>
+
+                            <a href="course-details.html?id=python" class="course-link">
+
+                                View Course
+
+                                <i class="bi bi-arrow-right"></i>
+
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+
+                <!-- Course 3 -->
+                <div class="col-md-6 col-lg-4">
+
+                    <article class="course-card h-100">
+
+                        <div class="course-image-wrapper">
+
+                            <img
+                                src="img/data-analytics.jpg"
+                                alt="Data analytics dashboard"
+                                class="course-image"
+                                loading="lazy"
+                            >
+
+                            <span class="course-category">Data</span>
+
+                        </div>
+
+                        <div class="course-body">
+
+                            <div class="course-meta">
+
+                                <span>
+                                    <i class="bi bi-clock"></i>
+                                    10 Weeks
+                                </span>
+
+                                <span>
+                                    <i class="bi bi-bar-chart"></i>
+                                    Intermediate
+                                </span>
+
+                            </div>
+
+                            <h3>Data Analytics</h3>
+
+                            <p>
+
+                                Learn how to analyze data, work with SQL,
+                                and transform information into insights.
+
+                            </p>
+
+                            <a href="course-details.html?id=data-analytics" class="course-link">
+
+                                View Course
+
+                                <i class="bi bi-arrow-right"></i>
+
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= ABOUT SECTION ================= -->
+
+    <section class="about-section section-padding" id="about">
+
+        <div class="container">
+
+            <div class="row align-items-center g-5">
+
+                <!-- About Image -->
+                <div class="col-lg-6">
+
+                    <div class="about-image-wrapper">
+
+                        <img
+                            src="img/divcodes.avif"
+                            alt="People collaborating and learning together"
+                            class="about-image"
+                            loading="lazy"
+                        >
+
+                        <div class="about-image-caption">
+
+                            <i class="bi bi-code-square"></i>
+
+                            <span>Ideas become reality through code.</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- About Content -->
+                <div class="col-lg-6">
+
+                    <span class="section-label">A DIFFERENT WAY TO LEARN</span>
+
+                    <h2 class="section-title mt-3">
+
+                        More than lessons.
+                        <span class="serif-text">A place to grow.</span>
+
+                    </h2>
+
+                    <p class="section-description mt-4">
+
+                        At DivCodes, we believe that the best way to learn
+                        technology is to create something with it.
+
+                        Our learning experience focuses on practical skills,
+                        creativity, and problem-solving.
+
+                    </p>
+
+
+                    <!-- Benefits -->
+                    <div class="about-feature mt-4">
+
+                        <div class="feature-icon">
+                            <i class="bi bi-laptop"></i>
+                        </div>
+
+                        <div>
+
+                            <h5>Practical Learning</h5>
+
+                            <p>Build real projects instead of only studying theory.</p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="about-feature">
+
+                        <div class="feature-icon">
+                            <i class="bi bi-person-workspace"></i>
+                        </div>
+
+                        <div>
+
+                            <h5>Learn at Your Pace</h5>
+
+                            <p>Explore programming step by step and develop your skills.</p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="about-feature">
+
+                        <div class="feature-icon">
+                            <i class="bi bi-rocket-takeoff"></i>
+                        </div>
+
+                        <div>
+
+                            <h5>Career-Oriented Skills</h5>
+
+                            <p>Prepare yourself for opportunities in the technology industry.</p>
+
+                        </div>
+
+                    </div>
+
+                
+
+
+                    <a href="courses.html" class="btn btn-primary-custom mt-4">
+
+                        Find Your Learning Path
+
+                        <i class="bi bi-arrow-up-right ms-2"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CTA SECTION ================= -->
+
+    <section class="cta-section section-padding">
+
+        <div class="container">
+
+            <div class="cta-content text-center">
+
+                <span class="cta-label">YOUR NEXT CHAPTER STARTS HERE</span>
+
+                <h2>
+
+                    The future is built<br>
+                    <span class="serif-text">one line at a time.</span>
+
+                </h2>
+
+                <p>
+
+                    Start learning today. Your first project could be
+                    the beginning of something extraordinary.
+
+                </p>
+
+                <a href="courses.html" class="btn btn-light btn-lg cta-button">
+
+                    Start Learning
+
+                    <i class="bi bi-arrow-up-right ms-2"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer-section">
+
+        <div class="container">
+
+            <div class="row g-5 py-5">
+
+                <!-- Brand Information -->
+                <div class="col-lg-4">
+
+                    <a href="index.html" class="footer-brand">
+
+                        <i class="bi bi-code-slash"></i>
+
+                        Div<span>Codes</span>
+
+                    </a>
+
+                    <p class="footer-description mt-3">
+
+                        A place where curiosity meets technology.
+                        Learn programming, develop your skills,
+                        and build your future.
+
+                    </p>
+
+                    <div class="social-links mt-4">
+
+                        <a href="#" aria-label="Instagram">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+
+                        <a href="#" aria-label="LinkedIn">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+
+                        <a href="#" aria-label="GitHub">
+                            <i class="bi bi-github"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Quick Links -->
+                <div class="col-6 col-lg-2">
+
+                    <h5>Explore</h5>
+
+                    <ul class="footer-links">
+
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="my-courses.html">My Learning</a></li>
+
+                    </ul>
+
+                </div>
+
+
+                <!-- Learning -->
+                <div class="col-6 col-lg-2">
+
+                    <h5>Learning</h5>
+
+                    <ul class="footer-links">
+
+                        <li><a href="courses.html">Web Development</a></li>
+                        <li><a href="courses.html">Python</a></li>
+                        <li><a href="courses.html">Data Analytics</a></li>
+                        <li><a href="courses.html">Programming</a></li>
+
+                    </ul>
+
+                </div>
+
+
+                <!-- Contact -->
+                <div class="col-lg-4">
+
+                    <h5>Let's Connect</h5>
+
+                    <p class="footer-description">
+
+                        Have a question or want to start learning?
+                        We'd love to hear from you.
+
+                    </p>
+
+                    <a href="contact.html" class="footer-contact-link">
+
+                        Get in touch
+
+                        <i class="bi bi-arrow-up-right"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between gap-2">
+
+                <p class="mb-0">
+
+                    © 2026 DivCodes Academy. All rights reserved.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script src="js/main.js"></script>
+
+</body>
+</html>
