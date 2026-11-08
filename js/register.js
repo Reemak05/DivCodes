@@ -11,25 +11,20 @@
 
 const STORAGE_KEY = "divcodesRegistrations";
 
+const MAX_MESSAGE_LENGTH = 500;
+
 const COURSE_NAMES = {
-
     "web-development": "Web Development",
-
     "python": "Python Programming",
-
     "data-analytics": "Data Analytics",
-
     "ui-ux": "UI/UX Design",
-
     "cybersecurity": "Cybersecurity Fundamentals",
-
     "react": "React Development"
-
 };
 
 
 /* =========================================
-   2. INITIALIZE REGISTRATION
+   2. INITIALIZE APPLICATION
    ========================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -39,6 +34,8 @@ document.addEventListener("DOMContentLoaded", () => {
     initializeMessageCounter();
 
     preselectCourse();
+
+    initializeLiveValidation();
 
 });
 
@@ -53,13 +50,19 @@ function getRegistrations() {
 
         const savedData = localStorage.getItem(STORAGE_KEY);
 
-        return savedData ? JSON.parse(savedData) : [];
+        if (!savedData) return [];
+
+        const registrations = JSON.parse(savedData);
+
+        return Array.isArray(registrations)
+            ? registrations
+            : [];
 
     } catch (error) {
 
         console.error("Unable to read registrations:", error);
 
-        return [];
+        return null;
 
     }
 
@@ -67,7 +70,7 @@ function getRegistrations() {
 
 
 /* =========================================
-   4. INITIALIZE FORM
+   4. INITIALIZE REGISTRATION FORM
    ========================================= */
 
 function initializeRegistration() {
@@ -76,12 +79,19 @@ function initializeRegistration() {
 
     if (!form) return;
 
-
     form.addEventListener("submit", event => {
 
         event.preventDefault();
 
         if (!validateRegistrationForm(form)) {
+
+            const firstInvalidField = form.querySelector(
+                ".is-invalid"
+            );
+
+            if (firstInvalidField) {
+                firstInvalidField.focus();
+            }
 
             return;
 
@@ -89,6 +99,7 @@ function initializeRegistration() {
 
 
         // Get form values
+
         const fullName = document
             .getElementById("fullName")
             .value
@@ -115,35 +126,12 @@ function initializeRegistration() {
             .trim();
 
 
-        // Create registration object
-        const registration = {
+        // Check duplicate registration
 
-            id: generateRegistrationId(),
+        if (isDuplicateRegistration(email, courseId)) {
 
-            fullName: fullName,
-
-            email: email,
-
-            phone: phone,
-
-            courseId: courseId,
-
-            courseName: COURSE_NAMES[courseId],
-
-            message: message,
-
-            registeredAt: new Date().toISOString()
-
-        };
-
-
-        // Save registration
-        const saved = saveRegistration(registration);
-
-        if (!saved) {
-
-            alert(
-                "We couldn't save your registration. Please check your browser storage and try again."
+            showFormError(
+                "You are already registered for this course using this email address."
             );
 
             return;
@@ -151,27 +139,77 @@ function initializeRegistration() {
         }
 
 
-        // Display confirmation
+        // Create registration object
+
+        const registration = {
+
+            id: generateRegistrationId(),
+
+            fullName,
+
+            email,
+
+            phone,
+
+            courseId,
+
+            courseName: COURSE_NAMES[courseId],
+
+            message,
+
+            registeredAt: new Date().toISOString()
+
+        };
+
+
+        // Save registration
+
+        const saved = saveRegistration(registration);
+
+        if (!saved) {
+
+            showFormError(
+                "We couldn't save your registration. Please try again."
+            );
+
+            return;
+
+        }
+
+
+        // Display success message
+
         displaySuccessMessage(registration);
 
 
         // Reset form
+
         form.reset();
 
         form.classList.remove("was-validated");
 
-        document.getElementById("messageCount").textContent = "0";
+        clearValidationStyles(form);
 
-        form.querySelectorAll(".is-valid, .is-invalid").forEach(input => {
+        updateMessageCounter();
 
-            input.classList.remove("is-valid", "is-invalid");
+        hideFormError();
 
-        });
 
-        window.scrollTo({
-            top: document.getElementById("successMessage").offsetTop - 120,
-            behavior: "smooth"
-        });
+        // Scroll to success message
+
+        const successMessage = document.getElementById(
+            "successMessage"
+        );
+
+        if (successMessage) {
+
+            window.scrollTo({
+                top: successMessage.getBoundingClientRect().top
+                    + window.scrollY - 120,
+                behavior: "smooth"
+            });
+
+        }
 
     });
 
@@ -192,6 +230,8 @@ function validateRegistrationForm(form) {
 
     const course = document.getElementById("selectedCourse");
 
+    const message = document.getElementById("message");
+
     const terms = document.getElementById("terms");
 
 
@@ -199,12 +239,16 @@ function validateRegistrationForm(form) {
 
 
     // Full name validation
-    const namePattern = /^[\p{L}\p{M}]+(?:[ '\-][\p{L}\p{M}]+)*$/u;
+
+    const namePattern =
+        /^[\p{L}\p{M}]+(?:[ '\-][\p{L}\p{M}]+)*$/u;
+
+    const nameValue = fullName.value.trim();
 
     if (
-        fullName.value.trim().length < 3 ||
-        fullName.value.trim().length > 80 ||
-        !namePattern.test(fullName.value.trim())
+        nameValue.length < 3 ||
+        nameValue.length > 80 ||
+        !namePattern.test(nameValue)
     ) {
 
         setFieldError(fullName, true);
@@ -219,7 +263,9 @@ function validateRegistrationForm(form) {
 
 
     // Email validation
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+    const emailPattern =
+        /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
     if (!emailPattern.test(email.value.trim())) {
 
@@ -235,12 +281,15 @@ function validateRegistrationForm(form) {
 
 
     // Phone validation
-    const phoneDigits = phone.value.replace(/\D/g, "");
+
+    const phoneValue = phone.value.trim();
+
+    const phoneDigits = phoneValue.replace(/\D/g, "");
 
     const phonePattern = /^[+\d\s().-]+$/;
 
     if (
-        !phonePattern.test(phone.value.trim()) ||
+        !phonePattern.test(phoneValue) ||
         phoneDigits.length < 7 ||
         phoneDigits.length > 15
     ) {
@@ -257,7 +306,13 @@ function validateRegistrationForm(form) {
 
 
     // Course validation
-    if (!Object.prototype.hasOwnProperty.call(COURSE_NAMES, course.value)) {
+
+    if (
+        !Object.prototype.hasOwnProperty.call(
+            COURSE_NAMES,
+            course.value
+        )
+    ) {
 
         setFieldError(course, true);
 
@@ -270,7 +325,23 @@ function validateRegistrationForm(form) {
     }
 
 
-    // Terms validation
+    // Message validation
+
+    if (message && message.value.length > MAX_MESSAGE_LENGTH) {
+
+        setFieldError(message, true);
+
+        isValid = false;
+
+    } else if (message) {
+
+        setFieldError(message, false);
+
+    }
+
+
+    // Terms and conditions validation
+
     if (!terms.checked) {
 
         terms.classList.add("is-invalid");
@@ -284,7 +355,8 @@ function validateRegistrationForm(form) {
     }
 
 
-    // Show Bootstrap validation styling
+    // Bootstrap validation styling
+
     form.classList.add("was-validated");
 
 
@@ -294,28 +366,162 @@ function validateRegistrationForm(form) {
 
 
 /* =========================================
-   6. UPDATE FIELD VALIDATION
+   6. LIVE FIELD VALIDATION
    ========================================= */
 
-function setFieldError(field, hasError) {
+function initializeLiveValidation() {
 
-    field.classList.remove("is-valid", "is-invalid");
+    const fields = [
+        document.getElementById("fullName"),
+        document.getElementById("email"),
+        document.getElementById("phone"),
+        document.getElementById("selectedCourse")
+    ];
 
-    if (hasError) {
+    fields.forEach(field => {
 
-        field.classList.add("is-invalid");
+        if (!field) return;
 
-    } else {
+        field.addEventListener("blur", () => {
 
-        field.classList.add("is-valid");
+            validateSingleField(field);
+
+        });
+
+        field.addEventListener("input", () => {
+
+            if (field.classList.contains("is-invalid")) {
+
+                validateSingleField(field);
+
+            }
+
+        });
+
+        field.addEventListener("change", () => {
+
+            if (field.classList.contains("is-invalid")) {
+
+                validateSingleField(field);
+
+            }
+
+        });
+
+    });
+
+
+    const terms = document.getElementById("terms");
+
+    if (terms) {
+
+        terms.addEventListener("change", () => {
+
+            terms.classList.toggle(
+                "is-invalid",
+                !terms.checked
+            );
+
+        });
 
     }
 
 }
 
 
+function validateSingleField(field) {
+
+    const value = field.value.trim();
+
+    let valid = true;
+
+
+    if (field.id === "fullName") {
+
+        const pattern =
+            /^[\p{L}\p{M}]+(?:[ '\-][\p{L}\p{M}]+)*$/u;
+
+        valid =
+            value.length >= 3 &&
+            value.length <= 80 &&
+            pattern.test(value);
+
+    }
+
+
+    if (field.id === "email") {
+
+        const pattern =
+            /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+        valid = pattern.test(value);
+
+    }
+
+
+    if (field.id === "phone") {
+
+        const digits = value.replace(/\D/g, "");
+
+        const pattern = /^[+\d\s().-]+$/;
+
+        valid =
+            pattern.test(value) &&
+            digits.length >= 7 &&
+            digits.length <= 15;
+
+    }
+
+
+    if (field.id === "selectedCourse") {
+
+        valid = Object.prototype.hasOwnProperty.call(
+            COURSE_NAMES,
+            field.value
+        );
+
+    }
+
+
+    setFieldError(field, !valid);
+
+    return valid;
+
+}
+
+
 /* =========================================
-   7. GENERATE REGISTRATION ID
+   7. FIELD VALIDATION STYLING
+   ========================================= */
+
+function setFieldError(field, hasError) {
+
+    if (!field) return;
+
+    field.classList.remove("is-valid", "is-invalid");
+
+    field.classList.add(
+        hasError ? "is-invalid" : "is-valid"
+    );
+
+}
+
+
+function clearValidationStyles(form) {
+
+    form.querySelectorAll(
+        ".is-valid, .is-invalid"
+    ).forEach(field => {
+
+        field.classList.remove("is-valid", "is-invalid");
+
+    });
+
+}
+
+
+/* =========================================
+   8. GENERATE REGISTRATION ID
    ========================================= */
 
 function generateRegistrationId() {
@@ -329,7 +535,7 @@ function generateRegistrationId() {
 
 
 /* =========================================
-   8. SAVE REGISTRATION
+   9. SAVE REGISTRATION
    ========================================= */
 
 function saveRegistration(registration) {
@@ -337,6 +543,8 @@ function saveRegistration(registration) {
     try {
 
         const registrations = getRegistrations();
+
+        if (!registrations) return false;
 
         registrations.push(registration);
 
@@ -349,7 +557,10 @@ function saveRegistration(registration) {
 
     } catch (error) {
 
-        console.error("Registration could not be saved:", error);
+        console.error(
+            "Registration could not be saved:",
+            error
+        );
 
         return false;
 
@@ -359,17 +570,54 @@ function saveRegistration(registration) {
 
 
 /* =========================================
-   9. DISPLAY SUCCESS MESSAGE
+   10. CHECK DUPLICATE REGISTRATION
+   ========================================= */
+
+function isDuplicateRegistration(email, courseId) {
+
+    const registrations = getRegistrations();
+
+    if (!registrations) return false;
+
+    return registrations.some(registration => {
+
+        return (
+            registration.email.toLowerCase() === email &&
+            registration.courseId === courseId
+        );
+
+    });
+
+}
+
+
+/* =========================================
+   11. DISPLAY SUCCESS MESSAGE
    ========================================= */
 
 function displaySuccessMessage(registration) {
 
-    const successMessage = document.getElementById("successMessage");
+    const successMessage = document.getElementById(
+        "successMessage"
+    );
 
-    const successText = document.getElementById("successText");
+    const successText = document.getElementById(
+        "successText"
+    );
+
+    if (!successMessage || !successText) {
+
+        console.error("Success message elements are missing.");
+
+        return;
+
+    }
+
 
     successText.textContent =
-        `Thank you, ${registration.fullName}! Your registration for ${registration.courseName} has been saved successfully.`;
+        `Thank you, ${registration.fullName}! ` +
+        `Your registration for ${registration.courseName} ` +
+        "has been saved successfully.";
 
     successMessage.classList.remove("d-none");
 
@@ -377,22 +625,76 @@ function displaySuccessMessage(registration) {
 
 
 /* =========================================
-   10. PRESELECT COURSE
+   12. DISPLAY FORM ERROR
+   ========================================= */
+
+function showFormError(message) {
+
+    const errorMessage = document.getElementById(
+        "registrationError"
+    );
+
+    if (errorMessage) {
+
+        errorMessage.textContent = message;
+
+        errorMessage.classList.remove("d-none");
+
+        errorMessage.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+
+    } else {
+
+        alert(message);
+
+    }
+
+}
+
+
+function hideFormError() {
+
+    const errorMessage = document.getElementById(
+        "registrationError"
+    );
+
+    if (errorMessage) {
+
+        errorMessage.textContent = "";
+
+        errorMessage.classList.add("d-none");
+
+    }
+
+}
+
+
+/* =========================================
+   13. PRESELECT COURSE FROM URL
    ========================================= */
 
 function preselectCourse() {
 
-    const params = new URLSearchParams(window.location.search);
+    const params = new URLSearchParams(
+        window.location.search
+    );
 
     const courseId = params.get("course");
 
-    const courseSelect = document.getElementById("selectedCourse");
+    const courseSelect = document.getElementById(
+        "selectedCourse"
+    );
 
     if (!courseSelect || !courseId) return;
 
-
-    // Only select valid courses
-    if (Object.prototype.hasOwnProperty.call(COURSE_NAMES, courseId)) {
+    if (
+        Object.prototype.hasOwnProperty.call(
+            COURSE_NAMES,
+            courseId
+        )
+    ) {
 
         courseSelect.value = courseId;
 
@@ -402,10 +704,32 @@ function preselectCourse() {
 
 
 /* =========================================
-   11. MESSAGE CHARACTER COUNTER
+   14. MESSAGE CHARACTER COUNTER
    ========================================= */
 
 function initializeMessageCounter() {
+
+    const messageInput = document.getElementById("message");
+
+    if (!messageInput) return;
+
+    messageInput.setAttribute(
+        "maxlength",
+        MAX_MESSAGE_LENGTH
+    );
+
+    updateMessageCounter();
+
+    messageInput.addEventListener("input", () => {
+
+        updateMessageCounter();
+
+    });
+
+}
+
+
+function updateMessageCounter() {
 
     const messageInput = document.getElementById("message");
 
@@ -413,11 +737,6 @@ function initializeMessageCounter() {
 
     if (!messageInput || !messageCount) return;
 
-
-    messageInput.addEventListener("input", () => {
-
-        messageCount.textContent = messageInput.value.length;
-
-    });
+    messageCount.textContent = messageInput.value.length;
 
 }
