@@ -843,6 +843,27 @@ select {
     margin-bottom: 13px;
 }
 
+/* Footer Social Media Links */
+.social-links a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* Social Media Icons */
+.social-links a i {
+    color: #ffffff;
+}
+
+/* Hover Effect */
+.social-links a:hover {
+    color: #D98B59;
+}
+
+.social-links a:hover i {
+    color: #D98B59;
+}
+
 .footer-links a {
     color: #B9C7C0;
     font-size: 0.88rem;
