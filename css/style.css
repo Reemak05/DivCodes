@@ -2682,6 +2682,12 @@ textarea.custom-input {
     margin-bottom: 35px;
 }
 
+/* Contact Social Icons */
+.contact-socials .social-links a i {
+    color: #D98B59;
+    transition: color 0.3s ease;
+}
+
 
 /* CONTACT INFO ITEMS */
 
